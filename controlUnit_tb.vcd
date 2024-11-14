@@ -1,0 +1,161 @@
+$date
+	Tue Nov 12 10:56:49 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module controlUnit_tb $end
+$var wire 2 ! resSrc [1:0] $end
+$var wire 1 " regWrite $end
+$var wire 1 # pcSrc $end
+$var wire 1 $ memWrite $end
+$var wire 2 % inmSrc [1:0] $end
+$var wire 1 & branch $end
+$var wire 1 ' aluSrc $end
+$var wire 3 ( ALUcontrol [2:0] $end
+$var reg 3 ) funct3 [2:0] $end
+$var reg 1 * funct7 $end
+$var reg 7 + op [6:0] $end
+$var reg 1 , zero $end
+$scope module uut $end
+$var wire 1 ' aluSrc $end
+$var wire 1 & branch $end
+$var wire 3 - funct3 [2:0] $end
+$var wire 1 * funct7 $end
+$var wire 2 . inmSrc [1:0] $end
+$var wire 1 $ memWrite $end
+$var wire 7 / op [6:0] $end
+$var wire 1 # pcSrc $end
+$var wire 1 " regWrite $end
+$var wire 2 0 resSrc [1:0] $end
+$var wire 1 , zero $end
+$var wire 2 1 resSrc_int [1:0] $end
+$var wire 1 2 regWrite_int $end
+$var wire 1 3 memWrite_int $end
+$var wire 2 4 inmSrc_int [1:0] $end
+$var wire 1 5 branch_int $end
+$var wire 1 6 aluSrc_int $end
+$var wire 2 7 aluOp [1:0] $end
+$var wire 3 8 ALUcontrol [2:0] $end
+$scope module alu_decoder $end
+$var wire 3 9 f3 [2:0] $end
+$var wire 1 * f7 $end
+$var wire 2 : aluOp [1:0] $end
+$var reg 3 ; aluControl [2:0] $end
+$upscope $end
+$scope module main_decoder $end
+$var wire 7 < op [6:0] $end
+$var reg 2 = aluOp [1:0] $end
+$var reg 1 6 aluSrc $end
+$var reg 1 5 branch $end
+$var reg 2 > inmSrc [1:0] $end
+$var reg 1 3 memWrite $end
+$var reg 1 2 regWrite $end
+$var reg 2 ? resSrc [1:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+b1 ?
+b0 >
+b0 =
+b11 <
+b0 ;
+b0 :
+b10 9
+b0 8
+b0 7
+16
+05
+b0 4
+03
+12
+b1 1
+b1 0
+b11 /
+b0 .
+b10 -
+0,
+b11 +
+0*
+b10 )
+b0 (
+1'
+0&
+b0 %
+0$
+0#
+1"
+b1 !
+$end
+#10000
+1$
+13
+b1 %
+b1 .
+b1 4
+b1 >
+bx !
+bx 0
+bx 1
+bx ?
+1'
+16
+0"
+02
+b100011 +
+b100011 /
+b100011 <
+#20000
+b10 7
+b10 :
+b10 =
+1"
+12
+b0 !
+b0 0
+b0 1
+b0 ?
+0$
+03
+0'
+06
+bx %
+bx .
+bx 4
+bx >
+b0 )
+b0 -
+b0 9
+b110011 +
+b110011 /
+b110011 <
+#30000
+b1 (
+b1 8
+b1 ;
+1#
+1&
+15
+b1 7
+b1 :
+b1 =
+b10 %
+b10 .
+b10 4
+b10 >
+0"
+02
+1,
+b1100011 +
+b1100011 /
+b1100011 <
+#60000
