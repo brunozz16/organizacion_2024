@@ -1,0 +1,94 @@
+$date
+	Fri Nov 15 12:10:21 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module BR_tb $end
+$var wire 32 ! rd2 [31:0] $end
+$var wire 32 " rd1 [31:0] $end
+$var reg 5 # a1 [4:0] $end
+$var reg 5 $ a2 [4:0] $end
+$var reg 5 % a3 [4:0] $end
+$var reg 1 & clk $end
+$var reg 32 ' wd3 [31:0] $end
+$var reg 1 ( we $end
+$scope module uut $end
+$var wire 5 ) a1 [4:0] $end
+$var wire 5 * a2 [4:0] $end
+$var wire 5 + a3 [4:0] $end
+$var wire 1 & clk $end
+$var wire 32 , rd1 [31:0] $end
+$var wire 32 - rd2 [31:0] $end
+$var wire 32 . wd3 [31:0] $end
+$var wire 1 ( we3 $end
+$var integer 32 / i [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+b100000 /
+b11011110101011011011111011101111 .
+b0 -
+b0 ,
+b10 +
+b1 *
+b0 )
+0(
+b11011110101011011011111011101111 '
+0&
+b10 %
+b1 $
+b0 #
+b0 "
+b0 !
+$end
+#500000
+1&
+#1000000
+0&
+1(
+#1500000
+1&
+#2000000
+0&
+0(
+#2500000
+1&
+#3000000
+0&
+b11011110101011011011111011101111 "
+b11011110101011011011111011101111 ,
+b10 #
+b10 )
+#3500000
+1&
+#4000000
+0&
+#4500000
+1&
+#5000000
+0&
+#5500000
+1&
+#6000000
+0&
+#6500000
+1&
+#7000000
+0&
+#7500000
+1&
+#8000000
+0&
+#8500000
+1&
+#9000000
+0&
