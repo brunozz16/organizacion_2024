@@ -1,5 +1,5 @@
 module aluDeco (
-    input wire [1:0] op,           // Señal de operación de la ALU
+    input wire [1:0] op,              // Señal de operación de la ALU
     input wire [6:0] opcode,          // Opcode de la instrucción
     input wire [2:0] funct3,          // Campo funct3 de la instrucción
     input wire funct7,                // Bit funct7 de la instrucción

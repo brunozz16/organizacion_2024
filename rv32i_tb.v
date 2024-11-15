@@ -3,7 +3,6 @@ module rv32i_tb;
     reg clk;
     reg reset;
     wire [31:0] pc;
-    wire [31:0] instruction;
     
     // Instancia del módulo rv32i
     rv32i uut (
@@ -33,12 +32,6 @@ module rv32i_tb;
         $finish;
     end
 
-    // Monitoreo de señales
-    initial begin
-        $monitor("Time=%0t | PC=%d | Instruction=%h",
-             $time, pc, instruction);
-
-    #200 $finish;
-    end
+ 
 
 endmodule
