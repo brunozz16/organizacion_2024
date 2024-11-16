@@ -14,7 +14,6 @@ module controlUnit (
     wire [1:0] resultSrc_int, immSrc_int, aluOp;
     
     //chequear esto
-
     mainDeco main_decoder(
         .op(op),
         //salidas
@@ -44,6 +43,6 @@ module controlUnit (
     assign regWrite = regWrite_int;
     assign resultSrc = resultSrc_int;
     assign immSrc = immSrc_int;
-    assign pcSrc = (branch & zero) || jump_int;
+    assign pcSrc = (branch & zero) | jump_int;
 
 endmodule

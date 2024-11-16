@@ -6,7 +6,7 @@ module PC (
 );
     always @(posedge clk or posedge reset) begin
         if (reset)
-            pc <= 0;
+            pc <= 32'b0;
         else
             pc <= pcNext;
     end

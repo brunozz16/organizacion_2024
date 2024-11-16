@@ -13,7 +13,7 @@ module ALU (
             3'b010: ALUResult = srcA & srcB;    // AND
             3'b011: ALUResult = srcA | srcB;    // OR
             3'b100: ALUResult = (srcA < srcB) ? 1 : 0; // SLT
-            default: ALUResult = 0;
+            default: ALUResult = 32'b0; 
         endcase
         
     // Asignación de la señal zero
