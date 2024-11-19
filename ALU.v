@@ -1,28 +1,38 @@
 module ALU (
-    input [31:0] srcA,
-    input [31:0] srcB,
-    input [2:0] ALUControl,
-    output reg [31:0] ALUResult,
-    output reg zero
+    input wire [31:0] srcA,
+input wire [31:0] srcB,
+input wire [2:0] ALUControl,
+output reg zero,
+output wire [31:0] ALUResult
 );
 
-    always @(*) begin
-        case (ALUControl)
-            3'b000: ALUResult = srcA + srcB;    // ADD
-            3'b001: ALUResult = srcA - srcB;    // SUB
-            3'b010: ALUResult = srcA & srcB;    // AND
-            3'b011: ALUResult = srcA | srcB;    // OR
-            3'b100: ALUResult = (srcA < srcB) ? 1 : 0; // SLT
-            default: ALUResult = 32'b0; 
-        endcase
-        
-    // Asignación de la señal zero
-    if (ALUResult == 0)
-    begin
-        zero = 1'b1;
-    end else begin
-        zero = 1'b0;
+ reg [31:0] aux;
+always@(*)begin
+    if(ALUControl==3'b000)begin
+        aux=srcA+srcB;
     end
+    if (ALUControl==3'b001)begin
+        aux=srcA-srcB;
+    end
+    if (ALUControl==3'b010)begin
+        aux=srcA&srcB;
+    end
+    if (ALUControl==3'b011)begin
+        aux=srcA|srcB;
+    end
+    if (ALUControl==3'b101)begin
+        aux=srcA<srcB;
+    end
+    
+    if(aux==32'b0)begin
+        zero=1'b1;
+    end 
+    else begin 
+        zero=1'b0;
+    end
+end
 
-    end
+assign ALUResult=aux;
+
+
 endmodule

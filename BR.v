@@ -1,33 +1,36 @@
 module BR (
-    input wire clk,
-    input wire we3,               // Señal para habilitar la escritura
-    input wire [4:0] a1,              // Índice del primer registro de lectura
-    input wire [4:0] a2,              // Índice del segundo registro de lectura
-    input wire [4:0] a3,               // Índice del registro de escritura
-    input wire [31:0] wd3,       // Dato a escribir
-    output wire [31:0] rd1,      // Salida del primer registro de lectura
-    output wire [31:0] rd2       // Salida del segundo registro de lectura
+    input wire clk,                 // Señal de reloj
+    input wire [4:0] a1,            // Dirección del primer registro a leer
+    input wire [4:0] a2,            // Dirección del segundo registro a leer
+    input wire [4:0] a3,            // Dirección del registro a escribir
+    input wire [31:0] wd3,          // Datos a escribir
+    input wire we3,                 // Habilitación de escritura
+    output wire [31:0] rd1,         // Salida: Contenido del registro a1
+    output wire [31:0] rd2          // Salida: Contenido del registro a2
 );
 
-    // Definición de los 32 registros de 32 bits
-    reg [31:0] registers [31:0];
+    // Definición de la memoria de registros (32 registros de 32 bits)
+    reg [31:0] registers [0:31];
 
-    // Inicialización de registros a cero
+    // Inicialización de registros
     integer i;
     initial begin
         for (i = 0; i < 32; i = i + 1) begin
-            registers[i] = 0;
+            registers[i] = 32'b0;   // Inicializo todos los registros en 0
         end
+
     end
 
-    // Lectura de registros (asíncrona)
-    assign rd1 = registers[a1];
-    assign rd2 = registers[a2];
-
-    // Escritura de registros (sincronizada con el reloj)
+    // Lógica para escribir en los registros
     always @(posedge clk) begin
-        if (we3 && a3 != 0) begin  // a3 = 0 es el registro cero, que debe permanecer en cero
-            registers[a3] <= wd3;
+        if (we3 && a3 != 0) begin
+            registers[a3] <= wd3;  // Escribir en el registro a3 si we3 está habilitado y no es el registro 0
         end
+
     end
+
+    // Lectura asíncrona de los registros
+    assign rd1 = registers[a1]; // El registro 0 siempre devuelve 0
+    assign rd2 = registers[a2]; // El registro 0 siempre devuelve 0
+
 endmodule

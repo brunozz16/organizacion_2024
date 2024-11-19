@@ -29,7 +29,7 @@ module dataPath (
 
     // Memoria de Instrucciones
     rom instructionMemory (
-        .address(pc[31:0]),
+        .address(pc[6:2]),
         //salida
         .readData(instruction)
     );
@@ -68,7 +68,7 @@ module dataPath (
     // Memoria de Datos
     DM data_memory (
         .clk(clk),
-        .a(aluResult[4:0]),
+        .a(aluResult[6:2]),
         .wd(rd2),
         .we(memWrite),
         //salida
@@ -119,5 +119,5 @@ module dataPath (
     );
 
     assign writeData = rd2; // Salida para datos a escribir en memoria de datos
-
+    
 endmodule

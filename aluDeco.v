@@ -7,25 +7,29 @@ module aluDeco (
 );
     reg[1:0] aux;
     
-    always @(*) begin
-        aux[0]=funct7;
-        aux[1]=opcode;
-        case (op)
-            2'b00: ALUControl = 3'b000; // lw, sw (Add)
-            2'b01: ALUControl = 3'b001; // beq (Subtract)
-            2'b10: begin
-                case (funct3)
-                    3'b000: if (aux!=2'b11) 
-                            ALUControl=3'b000; //add
-                        else 
-                            ALUControl=3'b001;  //subtract
-                    3'b010: ALUControl = 3'b101; //stl              // slt
-                    3'b110: ALUControl = 3'b011; //or               // or
-                    3'b111: ALUControl = 3'b010; //and                // and
-                    default: ALUControl = 3'b000;                     // default to add
-                endcase
-            end
-            default: ALUControl = 3'b000; // Default case
-        endcase
+always@(*) begin
+    aux[0]=funct7;
+    aux[1]=opcode;
+    if(op==2'b00)begin
+        ALUControl=3'b000;
     end
+    else if(op==2'b01)begin
+        ALUControl=3'b001;
+    end
+    else if(op==2'b10 & funct3==3'b000 & aux!=2'b11)begin
+            ALUControl=3'b000;
+    end
+    else if(op==2'b10 & funct3==3'b000 &aux==2'b11)begin
+        ALUControl=3'b001;
+    end
+    else if(op==2'b10 &funct3==3'b010)begin
+        ALUControl=3'b101;
+    end
+    else if(op==2'b10 & funct3==3'b110)begin
+        ALUControl=3'b011;
+    end
+    else if (op==2'b10&funct3==3'b111)begin
+        ALUControl=3'b010;
+    end
+end
 endmodule

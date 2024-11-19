@@ -1,60 +1,60 @@
-`default_nettype none
-`define VCD_OUTPUT "BR_tb.vcd"
-`timescale 100 ns / 10 ns
+`define DUMPSTR(x) `"x.vcd`" ///es para crear una funcion que crea ese archivo para usar en el gtkwire
+`timescale 100 ns/10 ns ///escala de tiempo
+module BR_tb();
+    parameter duration=10;
+    reg clk=0; ///inicializo en cero logico
+    always #1 clk=~clk;  ///cada media unidad de tiempo le cambiamos su valor por su negado
+    
 
-module BR_tb;
+    reg [4:0] test_a1;
+    reg [4:0] test_a2;
+    reg [4:0] test_a3;
+    reg [31:0] test_wd;
+    reg test_we;
+    wire [31:0] test_rd1;
+    wire [31:0] test_rd2;
+    //defino las entradas
+ //defino la salida
 
-    reg clk;                      // Señal de reloj
-    reg [4:0] a1, a2, a3;        // Direcciones de los registros
-    reg [31:0] wd3;              // Datos a escribir
-    reg we;                      // Habilitación de escritura
-    wire [31:0] rd1, rd2;        // Salidas de los registros
+BR uut_br(
+    .clk(clk),
+    .a1(test_a1),
+    .a2(test_a2),
+    .a3(test_a3),
+    .wd3(test_wd),
+    .we3(test_we),
+    .rd1(test_rd1),
+    .rd2(test_rd2)
+);
+initial begin
+    $dumpfile(`DUMPSTR(`VCD_OUTPUT));
+    $dumpvars(0,BR_tb);
+        #2
+        test_we=0;
+        test_a1=5'b00000;
+        test_a2=5'b00101;
+        #2
+        test_we=0;
+         test_a1=5'b00100;
+        test_a2=5'b11111;
+        #2
+        test_we=1;
+        test_a3=5'b00100;
+        test_wd=32'b00000000000000000000000000000100;
+        #2
+        test_a3=5'b00101;
+         test_wd=32'b00000000000000000000000000001000;
+        #2
+          test_we=0;
+        test_a1=5'b00100;
+        test_a2=5'b00101;
 
-    // Instancia del módulo BR
-    BR uut (
-        .clk(clk),
-        .a1(a1),
-        .a2(a2),
-        .a3(a3),
-        .wd3(wd3),
-        .we3(we),
-        .rd1(rd1),
-        .rd2(rd2)
-    );
 
-    // Generador de la señal de reloj
-    initial begin
-        clk = 0;
-        forever #5 clk = ~clk;  // Reloj con periodo de 10 unidades de tiempo
-    end
-
-    // Procedimiento de prueba
-    initial begin
-        // Archivos de volcado para la simulación en VCD
-        $dumpfile(`VCD_OUTPUT);
-        $dumpvars(0, BR_tb);
-
-        // Inicializa las señales
-        a1 = 5'b00000;
-        a2 = 5'b00001;
-        a3 = 5'b00010;
-        wd3 = 32'hDEADBEEF;
-        we = 0;
-
-        // Espera algunos ciclos y prueba varios valores
-        #10;
-        we = 1;  // Habilitar escritura
-        #10; 
-        we = 0;  // Deshabilitar escritura
-        #10;
-
-        // Leer los registros
-        a1 = 5'b00010;  // Leer el registro 2
-        a2 = 5'b00001;  // Leer el registro 1
-        #10;
-
-        // Termina la simulación
-        #50 $display("End of simulation");
-        $finish;
-    end
+   #(duration) $display ("Fin de la simulacion");
+    $finish;
+end
 endmodule
+
+        
+
+      

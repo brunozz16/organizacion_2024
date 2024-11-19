@@ -10,7 +10,6 @@ module rv32i (
     wire [2:0] ALUcontrol;
     wire zero;
     wire [31:0] aluResult, writeData;
-
     wire [31:0] instruction;
 
     // Unidad de Control
@@ -19,7 +18,7 @@ module rv32i (
         .funct3(instruction[14:12]),
         .funct7(instruction[30]),
         .zero(zero),
-        .branch(branch),
+        //.branch(branch),
         .resultSrc(resSrc),
         .memWrite(memWrite),
         .aluSrc(aluSrc),
